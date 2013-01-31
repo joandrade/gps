@@ -6,6 +6,13 @@ oe = 7.2921151467E-5;
 
 A = sqrtA^2;
 dt = tst - toe;
+if dt > 302400
+    dt = dt-604800;
+elseif dt < -302400
+    dt = dt+604800;
+else
+end
+
 n = sqrt(u/(A.^3));
 M = M0 + n*dt;
 
@@ -17,5 +24,5 @@ o = o0 + op*dt - oe*tst;
 R = A*(1 - e*cos(E));
 
 X = R*(cos(t)*cos(o) - sin(t)*sin(o)*cos(a));
-Y = R*(cos(t)*sin(o) - sin(t)*cos(o)*cos(a));
+Y = R*(cos(t)*sin(o) + sin(t)*cos(o)*cos(a));
 Z = R*(sin(t)*sin(a));
