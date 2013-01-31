@@ -1,4 +1,4 @@
-function tst = calcdia(toe)
+function tst = calcdia
 format long
 c=clock;
 horas=c(1,4);
@@ -40,6 +40,7 @@ tst=(dia_semana-1)*86400 + horas*3600 + minutos*60 + segundos;
 if tst > 302400
     tst = tst-604800;
 elseif tst < -302400
-    tst = tst+604800
-else end
+    tst = tst+604800;
+else
+end
 end
