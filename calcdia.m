@@ -37,4 +37,9 @@ data=strcat(num2str(c(1,3)),'-',month,'-',num2str(c(1,1)));
 
 
 tst=(dia_semana-1)*86400 + horas*3600 + minutos*60 + segundos;
+if tst > 302400
+    tst = tst-604800;
+elseif tst < -302400
+    tst = tst+604800
+else end
 end
