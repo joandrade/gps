@@ -1,14 +1,14 @@
-function [ C ] = receiverinit(lat, long, alt)
+function [ C ] = receiverinit(lat, lon, alt)
 %RECEIVERINIT
 % Retrieves most recent YUMA almanac from
 %http://www.navcen.uscg.gov/?pageName=gpsAlmanacs
 % and outputs the constellation matrix C, with ECEF coordinates of satellites 
 % with elevation angles over 10 degrees, with respect to initial estimate
-% given by coordinates (lat, long, alt). lat and long in degrees, alt in
+% given by coordinates (lat, lon, alt). lat and lon in degrees, alt in
 % meters.
 
 DATA=getgpsdata;
-tst=calcdia(DATA(1,3));
+tst=calcdia;
 
 n=size(DATA,1);
 
@@ -21,12 +21,12 @@ end
 
 clear DATA;
 
-[xu yu zu]=eceffromlatlong(lat, long, alt);
+[xu yu zu]=eceffromlatlong(lat, lon, alt);
 ENU=zeros(n,4);
 
 for s=1:n
     ENU(s,1)=A(s,1);
-    [ENU(s,2) ENU(s,3) ENU(s,4)] = enufromecef(xu, yu, zu, lat, long, A(s,2), A(s,3), A(s,4));
+    [ENU(s,2) ENU(s,3) ENU(s,4)] = enufromecef(xu, yu, zu, lat, lon, A(s,2), A(s,3), A(s,4));
 end
 
 C=zeros(1,4);
